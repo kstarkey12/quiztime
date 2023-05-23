@@ -1,50 +1,53 @@
 body {
-  background-color: black;
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
+  background-color: black; /* Set the background color of the body to black */
+  color: white; /* Set the text color to white */
+  font-family: Arial, sans-serif; /* Set the font family to Arial or sans-serif */
+  text-align: center; /* Center align the text content */
 }
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 600px; /* Set the maximum width of the container to 600 pixels */
+  margin: 0 auto; /* Center align the container horizontally */
+  padding: 20px; /* Add 20 pixels of padding around the container */
 }
 
 h1, h2, h3 {
-  color: white;
+  color: white; /* Set the color of h1, h2, and h3 headings to white */
 }
 
 #quiz-container, #score-container {
-  display: none;
+  display: none; /* Initially hide the quiz container and score container */
 }
 
 ul {
-  list-style-type: none;
-  padding: 0;
+  list-style-type: none; /* Remove the default list styles */
+  padding: 0; /* Remove the default padding of the ul element */
 }
 
 #timer {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Add a bottom margin of 20 pixels to the timer element */
 }
 
 #score-container input[type="text"], #score-container button {
-  margin-top: 10px;
+  margin-top: 10px; /* Add a top margin of 10 pixels to the input text and button elements in the score container */
 }
 
 #high-scores-list {
-  text-align: left;
+  text-align: left; /* Align the high scores list to the left */
 }
 
 button {
-  background-color: gray;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
+  background-color: gray; /* Set the background color of the button to gray */
+  color: white; /* Set the text color of the button to white */
+  padding: 10px 20px; /* Add 10 pixels of padding vertically and 20 pixels horizontally to the button */
+  border: none; /* Remove the border of the button */
+  cursor: pointer; /* Set the cursor style to pointer */
 }
 
 button:hover {
-  background-color: darkgray;
+  background-color: darkgray; /* Change the background color of the button to dark gray when hovered */
 }
 
+#score-container button {
+  margin-right: 10px; /* Add a right margin of 10 pixels to the buttons in the score container */
+}
