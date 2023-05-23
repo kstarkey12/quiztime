@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const choicesElement = document.getElementById("choices");
   const initialsInput = document.getElementById("initials-input");
   const saveScoreButton = document.getElementById("save-score");
+  const restartButton = document.getElementById("restart");
   const scoreContainer = document.getElementById("score-container");
   const highScoresList = document.getElementById("high-scores-list");
 
@@ -32,8 +33,8 @@ document.addEventListener("DOMContentLoaded", function() {
   let score = 0;
 
   function startQuiz() {
-    startButton.style.display = "none";
-    quizContainer.style.display = "block";
+    startButton.style.display = "none"; // Hide the start button
+    quizContainer.style.display = "block"; // Show the quiz container
     showQuestion();
   }
 
@@ -66,8 +67,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function endQuiz() {
-    quizContainer.style.display = "none";
-    scoreContainer.style.display = "block";
+    quizContainer.style.display = "none"; // Hide the quiz container
+    scoreContainer.style.display = "block"; // Show the score container
   }
 
   saveScoreButton.addEventListener("click", function() {
@@ -91,10 +92,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
     highScores.forEach(function(scoreData) {
       const li = document.createElement("li");
-      li.textContent = scoreData.initials + " - " + scoreData.score;
+      li.textContent = scoreData.initials + " : " + scoreData.score; // Display initials and score
       highScoresList.appendChild(li);
     });
   }
 
+  function restartQuiz() {
+    quizContainer.style.display = "none"; // Hide the quiz container
+    scoreContainer.style.display = "none"; // Hide the score container
+    startButton.style.display = "block"; // Show the start button
+    currentQuestion = 0;
+    score = 0;
+  }
+
   startButton.addEventListener("click", startQuiz);
+  restartButton.addEventListener("click", restartQuiz);
 });
