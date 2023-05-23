@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const timeElement = document.getElementById("time");
   const initialsInput = document.getElementById("initials-input");
   const saveScoreButton = document.getElementById("save-score");
+  const highScoresList = document.getElementById("high-scores-list");
 
   let currentQuestion = 0;
   let score = 0;
@@ -87,11 +88,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
   saveScoreButton.addEventListener("click", function() {
     const initials = initialsInput.value;
-    // Save the initials and score
-    // ...
-    // Show saved scores
-    // ...
+    if (initials.trim() !== "") {
+      saveScore(initials, score);
+      displayHighScores();
+    }
   });
+
+  function saveScore(initials, score) {
+    const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    highScores.push({ initials, score });
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+  }
+
+  function displayHighScores() {
+    highScoresList.innerHTML = "";
+    const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    highScores.forEach(function(scoreData) {
+      const li = document.createElement("li");
+      li.textContent = scoreData.initials + " - " + scoreData.score;
+      highScoresList.appendChild(li);
+    });
+  }
 
   startButton.addEventListener("click", startQuiz);
 });
