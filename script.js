@@ -23,21 +23,18 @@ document.addEventListener("DOMContentLoaded", function() {
   const quizContainer = document.getElementById("quiz-container");
   const questionElement = document.getElementById("question");
   const choicesElement = document.getElementById("choices");
-  const timeElement = document.getElementById("time");
   const initialsInput = document.getElementById("initials-input");
   const saveScoreButton = document.getElementById("save-score");
+  const scoreContainer = document.getElementById("score-container");
   const highScoresList = document.getElementById("high-scores-list");
 
   let currentQuestion = 0;
   let score = 0;
-  let time = 60;
-  let timer;
 
   function startQuiz() {
     startButton.style.display = "none";
     quizContainer.style.display = "block";
     showQuestion();
-    startTimer();
   }
 
   function showQuestion() {
@@ -59,8 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const question = quizData[currentQuestion];
     if (answer === question.correctAnswer) {
       score++;
-    } else {
-      time -= 10;
     }
     currentQuestion++;
     if (currentQuestion < quizData.length) {
@@ -70,33 +65,24 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  function startTimer() {
-    timer = setInterval(function() {
-      time--;
-      timeElement.textContent = time;
-      if (time <= 0) {
-        endQuiz();
-      }
-    }, 1000);
-  }
-
   function endQuiz() {
-    clearInterval(timer);
     quizContainer.style.display = "none";
-    document.getElementById("score-container").style.display = "block";
+    scoreContainer.style.display = "block";
   }
 
   saveScoreButton.addEventListener("click", function() {
-    const initials = initialsInput.value;
-    if (initials.trim() !== "") {
+    const initials = initialsInput.value.trim();
+    if (initials !== "") {
       saveScore(initials, score);
       displayHighScores();
+      initialsInput.value = "";
     }
   });
 
   function saveScore(initials, score) {
     const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
     highScores.push({ initials, score });
+    highScores.sort((a, b) => b.score - a.score); // Sort scores in descending order
     localStorage.setItem("highScores", JSON.stringify(highScores));
   }
 
